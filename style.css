@@ -18,34 +18,19 @@ body {
   color: white;
 }
 
-#card-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-}
-
-.card {
-  width: 300px;
-  border: 1px solid #ccc;
+#character-grid > div {
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 5px;
+  padding: 10px;
+  background-color: rgb(207 232 220);
+  border: 2px solid rgb(79 185 227);
+  width: 10rem;
+  height: 10rem;
 }
 
-.card-content {
-  padding: 20px;
-  font-family: "Verdana";
-  color: #777;
-}
-
-.card-content h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-.card img {
-  width: 100%;
-  height: auto;
+#character-grid {
+  display: flex;
+  flex-wrap: wrap;
+  
 }
 
 .footer {
