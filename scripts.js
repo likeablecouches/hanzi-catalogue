@@ -22,7 +22,7 @@
  *
  */
 
-let numVisibleChars = 20;
+let numVisibleChars = 40;
 let visibleChars = [];
 let dictionaryArray = [];
 let graphicsArray = [];
@@ -59,7 +59,7 @@ function parseCSV(data) {
 
 async function parseObjects() {
   const [dictionaryResponse, graphicsResponse] = await Promise.all([
-    fetch('http://localhost:8000/dictionary_formatted.json'),
+    fetch('http://localhost:8000/dictionary_formatted_v2.json'),
     fetch('http://localhost:8000/graphics_formatted.json')
   ]);
 
@@ -79,20 +79,14 @@ async function parseObjects() {
     return { ...obj, strokes: graphicsArray[index].strokes};
   });
 
-  // debugging
-  console.log('Dictionary Array: ');
-  console.log(dictionaryArray);
-  console.log('Graphics array: ');
-  console.log(graphicsArray);
-  console.log('Characters array: ');
-  console.log(characters);
-  console.log('Frequency list ');
-  console.log(characterFrequencies);
 }
 
 function showGrid() {
 
+  console.log('character-grid element: ');
+  console.log(document.getElementById('character-grid'));
   let gridContainer = document.getElementById('character-grid');
+  gridContainer.innerHTML = "";
   console.log('Grid container:');
   console.log(gridContainer);
 
@@ -131,6 +125,7 @@ function placeCharacters(documentGrid, characterArr) {
 }
 
 function retrieveMostFrequentCharacters(frequencyList, characterArr, originalSet, numChars) {
+  characterArr.length = 0;
   for (let i = 0; i < numChars; i++) {
     let curCharacter = frequencyList[i].word;
     characterArr.push(originalSet.filter(entry => entry.character === curCharacter)[0]);
@@ -151,26 +146,68 @@ function sortedCharactersByStrokes(characterArr, option) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", parseObjects);
-document.addEventListener("DOMContentLoaded", showGrid);
-
-document.addEventListener("DOMContentLoaded", () => { 
+function updateGrid() {
   let filterDropdown = document.getElementById('filterOptions');
   filterDropdown.addEventListener('change', () => {
     console.log('Dropdown changed!');
-    const option = filterDropdown.value;
+    const filterOption = filterDropdown.value;
 
-    // modify visibleChars
-
-    if (option === 'strokeAsc' || option === 'strokeDesc') {
-      sortedCharactersByStrokes(option);
+    if (filterOption === 'strokeAsc' || filterOption === 'strokeDesc') {
+      sortedCharactersByStrokes(characters, filterOption);
+      visibleChars = characters.slice(0, numVisibleChars);
+    } else if (filterOption === 'frequency') {
+      retrieveMostFrequentCharacters(characterFrequencies,
+        visibleChars, 
+        characters, 
+        numVisibleChars);
     }
+
     showGrid();
+  });
+}
 
-  })
+function searchByPinyin() {
+  const searchInput = document.getElementById('searchBar').value.toLowerCase();
+  const searchResults = document.getElementById('searchResults');
 
-})
+  searchResults.innerHTML = "";
 
+  visibleChars.length = 0
+
+  for (let i = 0; i < characters.length; i++) {
+    if (visibleChars.length == numVisibleChars) {
+      break;
+    }
+
+    if (searchInput === characters[i].pinyin[1] ||
+      searchInput === characters[i].character) {
+      visibleChars.push(characters[i]);
+    }
+  }
+
+  showGrid();
+
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await parseObjects();
+  // debugging
+  console.log('Dictionary Array: ');
+  console.log(dictionaryArray);
+  console.log('Graphics array: ');
+  console.log(graphicsArray);
+  console.log('Characters array: ');
+  console.log(characters);
+  console.log('Frequency list ');
+  console.log(characterFrequencies);
+  retrieveMostFrequentCharacters(characterFrequencies,
+    visibleChars, 
+    characters, 
+    numVisibleChars);
+  showGrid();
+});
+
+document.addEventListener("DOMContentLoaded", updateGrid);
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 

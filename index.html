@@ -16,10 +16,15 @@
 
     <label for="filterOptions">Filter by:</label>
     <select id="filterOptions">
+      <option value="frequency">Most commonly used</option>
       <option value="strokeAsc">Number of strokes -- ascending</option>
       <option value="strokeDesc">Number of strokes -- descending</option>
-      <option value="frequency">Most commonly used</option>
     </select>
+
+    <div id="searchContainer">
+      <input type="text" id="searchBar" placeholder="Search by pinyin..." onkeyup="searchByPinyin()">
+      <div id="searchResults"></div>
+    </div>
 
     <div id="character-grid">
     </div>
