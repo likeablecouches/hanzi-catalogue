@@ -40,7 +40,25 @@ body {
   padding: 10px;
 }
 
-body {
-  font-family: "KaiTi", "BiauKai", "DFKai-SB", serif;
+button {
+ text-decoration: none;
+ outline: none;
+}
+
+.grid-item {
+    width: 400px;
+    padding: 22px;
+}
+
+.toggleButton {
+    border: 1px solid #bebebe;
+    padding: 7px 8px;
+}
+.toggleContent {
+    margin-top: 9px;
+    border: 1px solid #bebebe;
+    padding: 16px 10px 10px 10px;
+    background: #ededed;
+    position:absolute;
 }
 

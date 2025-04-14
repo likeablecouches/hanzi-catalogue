@@ -98,6 +98,14 @@ function showGrid() {
   console.log(visibleChars);
   
   placeCharacters(gridContainer, visibleChars);
+
+  const gridButtons = gridContainer.getElementsByTagName('button');
+
+  for (let i = 0; i < gridButtons.length; i++) {
+    oVTog.toggle(gridButtons[i]);
+  }
+
+
 }
 
 
@@ -114,11 +122,33 @@ function placeCharacters(documentGrid, characterArr) {
     // Add a class to the new div
     newDiv.classList.add('grid-item');
 
+    const divButton = document.createElement('button');
+    const popupInfo = document.createElement('p');
+
+    let charDefinition = character[i].definition;
+    if (charDefinition === undefined) {
+      charDefinition = 'None';
+    }
+
+    popupInfo.innerHTML = `
+      <p>
+        <strong>Unicode: </strong>${characterArr[i].character}<br>
+        <strong>Definition: </strong>${charDefinition}<br>
+        <strong>Pinyin(pronunciation): </strong>${characterArr[i].pinyin[0]}<br>
+        <strong>Number of writing strokes: </strong>${characterArr[i].strokes.length}<br>
+      </p>
+    `;
+
+    popupInfo.classList.add('toggleContent');
+
     // Add text content to the new div
 
-    newDiv.textContent = characterArr[i].character;
-    newDiv.style.fontSize = '100px';
+    divButton.classList.add('toggleButton');
+    divButton.textContent = characterArr[i].character;
+    divButton.style.fontSize = '100px';
 
+    newDiv.appendChild(divButton);
+    newDiv.appendChild(popupInfo);
     // Append the new div to the parent container
     documentGrid.appendChild(newDiv);
   }
@@ -188,6 +218,34 @@ function searchByPinyin() {
   showGrid();
 
 }
+
+var oVTog = {
+  toggle: function (el) {
+    var container = el.parentNode; // Find the <div> wrapping the trigger
+    var para = container.getElementsByTagName('p')[0]; // Find the first <p> inside the container
+
+    // Initially hide the paragraph
+    para.style.display = "none";
+
+    // On hover → show the paragraph
+    el.onmouseover = function () {
+      para.style.display = '';
+      return false;
+    };
+
+    // On mouse out → hide the paragraph
+    el.onmouseout = function () {
+      para.style.display = 'none';
+      return false;
+    };
+
+    // On click → toggle visibility
+    el.onclick = function () {
+      para.style.display = para.style.display == 'none' ? '' : 'none';
+      return false;
+    };
+  }
+};
 
 document.addEventListener("DOMContentLoaded", async () => {
   await parseObjects();
