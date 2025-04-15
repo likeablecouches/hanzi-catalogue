@@ -59,8 +59,8 @@ function parseCSV(data) {
 
 async function parseObjects() {
   const [dictionaryResponse, graphicsResponse] = await Promise.all([
-    fetch('http://localhost:8000/dictionary_formatted_v2.json'),
-    fetch('http://localhost:8000/graphics_formatted.json')
+    fetch('./dictionary_formatted_v2.json'),
+    fetch('./graphics_formatted.json')
   ]);
 
   if (!dictionaryResponse.ok || !graphicsResponse.ok) {
@@ -70,7 +70,7 @@ async function parseObjects() {
   dictionaryArray = await dictionaryResponse.json(); // primary use
   graphicsArray = await graphicsResponse.json();
 
-  const ch_freqResponse = await fetch('http://localhost:8000/ch_freq.csv');
+  const ch_freqResponse = await fetch('./ch_freq.csv');
   const ch_freqData = await ch_freqResponse.text();
   characterFrequencies = parseCSV(ch_freqData);
 
@@ -137,7 +137,7 @@ function placeCharacters(documentGrid, characterArr) {
         <strong>Pinyin(pronunciation): </strong>${characterArr[i].pinyin[0]}<br>
         <strong>Writing strokes: </strong>${characterArr[i].strokes.length}<br>
         <strong> Writing demo:</strong><br>
-        <object data = "http://localhost:8000/svgs/${characterArr[i].character.charCodeAt(0)}.svg"
+        <object data = "./svgs/${characterArr[i].character.charCodeAt(0)}.svg"
            width="100"
            height="100"/>
       </p>
