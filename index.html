@@ -1,35 +1,45 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Hanzi Catalogue</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
-    <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hanzi Catalogue</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <script type="text/javascript" src="scripts.js"></script>
+</head>
 
-  <body>
+<body>
+
+  <header>
+    <h1 id="title">Hanzi Collection</h1>
+    <nav id="navBar">
+
+      <label for="filterOptions">Filter by:</label>
+      <select id="filterOptions">
+        <option value="frequency">Most commonly used</option>
+        <option value="strokeAsc">Number of strokes -- ascending</option>
+        <option value="strokeDesc">Number of strokes -- descending</option>
+      </select>
+
+      <div id="searchContainer">
+        <input type="text" id="searchBar" placeholder="Search by pinyin or glyph..." onkeyup="searchByPinyin()">
+        <div id="searchResults"></div>
+      </div>
+    </nav>
+  </header>
 
 
-    <header class="main-header">
-      <h1 class="title">Hanzi Catalogue</h1>
-    </header>
-
-    <label for="filterOptions">Filter by:</label>
-    <select id="filterOptions">
-      <option value="frequency">Most commonly used</option>
-      <option value="strokeAsc">Number of strokes -- ascending</option>
-      <option value="strokeDesc">Number of strokes -- descending</option>
-    </select>
-
-    <div id="searchContainer">
-      <input type="text" id="searchBar" placeholder="Search by pinyin..." onkeyup="searchByPinyin()">
-      <div id="searchResults"></div>
-    </div>
-
+  <main>
     <div id="character-grid">
-    </div>
+      </div>
 
-    <div class="footer">
+      <!-- Add more cards as needed -->
     </div>
-  </body>
+  </main>
+
+  <footer>
+    <p>© 2025 Hanzi Catalogue</p>
+  </footer>
+</body>
 </html>

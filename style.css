@@ -1,64 +1,99 @@
-html,
-body {
+/* Reset & base styles */
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-.main-header {
-  background-color: rgba(0, 0, 0, 0.3);
-  padding-bottom: 10px;
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f9f9;
+  color: #222;
 }
 
-.title {
-  text-align: center;
-  margin: 0;
-  font-size: 8em;
-  font-family: "Helvetica";
-  font-weight: normal;
-  color: white;
+header {
+	width: 100%;
+	height: 300px;
+	background-color: #3498db;
+	text-align: center;
+	position: relative;
+	top: 0;
+	overflow: hidden;
+	@include transition(all .5s ease);
+
 }
 
-#character-grid > div {
-  border-radius: 5px;
-  padding: 10px;
-  background-color: rgb(207 232 220);
-  border: 2px solid rgb(79 185 227);
-  width: 10rem;
-  height: 10rem;
+#title{
+  font-size: 42px;
+  color: #fff;
+  line-height: 230px;
+  text-transform: uppercase;
+  font-weight: 100;
+  @include transition(all .3s ease);
+}
+
+
+#navBar {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  line-height: 60px;
+  width: 100%;
+  background-color: rgba(0,0,0,.1);
+  color: #fff;
+}
+
+#searchContainer {
+  color: #fff;
+  display: inline-block;
+  padding: 10px 15px;
+  line-height: 1;
+  text-decoration: none;
+
 }
 
 #character-grid {
+  padding: 10%;
   display: flex;
   flex-wrap: wrap;
-  
-}
-
-.footer {
-  display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 10px;
-}
-
-button {
- text-decoration: none;
- outline: none;
+  gap: 20px;
 }
 
 .grid-item {
-    width: 400px;
-    padding: 22px;
+  flex: 1 1 160px;
+  max-width: 300px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  text-align: center;
+  transition: transform 0.2s ease;
 }
 
-.toggleButton {
-    border: 1px solid #bebebe;
-    padding: 7px 8px;
+.grid-item:hover {
+  transform: translateY(-5px);
 }
+
+.toggleButton{
+  all: unset;
+  font-family: "KaiTi", "Kaiti SC", "Noto Serif SC", "Ma Shan Zheng", serif;
+}
+
 .toggleContent {
+    width: 300px;
     margin-top: 9px;
     border: 1px solid #bebebe;
     padding: 16px 10px 10px 10px;
     background: #ededed;
-    position:absolute;
+    position: absolute;
+    z-index: 9999;
+    text-align: left;
 }
 
+footer {
+  text-align: center;
+  padding: 3%;
+  font-size: 0.85rem;
+  color: #aaa;
+}
