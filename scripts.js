@@ -125,7 +125,7 @@ function placeCharacters(documentGrid, characterArr) {
     const divButton = document.createElement('button');
     const popupInfo = document.createElement('p');
 
-    let charDefinition = character[i].definition;
+    let charDefinition = characterArr[i].definition;
     if (charDefinition === undefined) {
       charDefinition = 'None';
     }
@@ -135,7 +135,11 @@ function placeCharacters(documentGrid, characterArr) {
         <strong>Unicode: </strong>${characterArr[i].character}<br>
         <strong>Definition: </strong>${charDefinition}<br>
         <strong>Pinyin(pronunciation): </strong>${characterArr[i].pinyin[0]}<br>
-        <strong>Number of writing strokes: </strong>${characterArr[i].strokes.length}<br>
+        <strong>Writing strokes: </strong>${characterArr[i].strokes.length}<br>
+        <strong> Writing demo:</strong><br>
+        <object data = "http://localhost:8000/svgs/${characterArr[i].character.charCodeAt(0)}.svg"
+           width="100"
+           height="100"/>
       </p>
     `;
 
@@ -229,6 +233,14 @@ var oVTog = {
 
     // On hover → show the paragraph
     el.onmouseover = function () {
+
+
+      para.getElementsByTagName('object');
+      const svgObject = document.createElement('object');
+      svgObject.setAttribute("data", para.data);
+      svgObject.setAttribute("width", "150");
+      svgObject.setAttribute("height", "150");
+
       para.style.display = '';
       return false;
     };
