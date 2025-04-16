@@ -18,12 +18,13 @@
       <label for="filterOptions">Filter by:</label>
       <select id="filterOptions">
         <option value="frequency">Most commonly used</option>
-        <option value="strokeAsc">Number of strokes -- ascending</option>
-        <option value="strokeDesc">Number of strokes -- descending</option>
+        <option value="strokeAsc">Least writing strokes</option>
+        <option value="strokeDesc">Most writing strokes</option>
       </select>
 
+      <label for="searchContainer">Search by pinyin or glyph:</label>
       <div id="searchContainer">
-        <input type="text" id="searchBar" placeholder="Search by pinyin or glyph..." onkeyup="searchByPinyin()">
+        <input type="text" id="searchBar" placeholder="Ex. Try 'reng' or 仍" onkeyup="searchByPinyin()">
         <div id="searchResults"></div>
       </div>
     </nav>

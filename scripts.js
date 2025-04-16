@@ -132,7 +132,7 @@ function placeCharacters(documentGrid, characterArr) {
 
     popupInfo.innerHTML = `
       <p>
-        <strong>Unicode: </strong>${characterArr[i].character}<br>
+        <strong>Character: </strong>${characterArr[i].character}<br>
         <strong>Definition: </strong>${charDefinition}<br>
         <strong>Pinyin(pronunciation): </strong>${characterArr[i].pinyin[0]}<br>
         <strong>Writing strokes: </strong>${characterArr[i].strokes.length}<br>
