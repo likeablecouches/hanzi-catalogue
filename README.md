@@ -1,6 +1,6 @@
 # Hanzi Catalogue
 
-A catalogue of nearly 10,000 Chinese characters with interactive writing animations. The data is from a [_makemeahanzi_](https://github.com/skishore/makemeahanzi), a data set containing information such as definition, pronounciation, and writing animations for an extensive list of Chinese characters. This website was made for the Snap Engineering Academy Project Assessment.
+A catalogue of nearly 10,000 Chinese characters with interactive writing animations. The data is from [_makemeahanzi_](https://github.com/skishore/makemeahanzi), a data set containing information such as definition, pronounciation, and writing animations for an extensive list of Chinese characters. Moreover, character frequency data is taken from this [website](https://lingua.mtsu.edu/chinese-computing/statistics/char/list.php?Which=MO). This project was made for the Snap Engineering Academy Project Assessment.
 
 
 ## 🛠️ Features
